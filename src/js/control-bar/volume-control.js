@@ -31,10 +31,7 @@ vjs.VolumeControl = vjs.Component.extend({
     } else {
       this.volumeMenuButton.hide();
     }
-    // backwards compatibility
-    this.volumeBar = this.volumeSlider.volumeBar;
-    console.log( player );
-    player.controlBar.muteToggle = this.muteToggle;
+    
   }
 });
 
