@@ -29,6 +29,9 @@ vjs.VolumeMenuButton.prototype.createMenu = function(){
   var menu = new vjs.Menu(this.player_, {
     contentElType: 'div'
   });
+  if ( this.options_.vertical ) {
+    menu.addClass("vjs-volume-menu-vertical");
+  }
   var vc = new vjs.VolumeBar(this.player_, vjs.obj.merge({vertical: true}, this.options_.volumeBar));
   menu.addChild(vc);
   return menu;

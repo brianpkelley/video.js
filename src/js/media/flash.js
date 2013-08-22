@@ -252,6 +252,16 @@ vjs.Flash.prototype.buffered = function(){
   return vjs.createTimeRange(0, this.el_.vjs_getProperty('buffered'));
 };
 
+vjs.Flash.prototype.setCurrentTime = function(seconds) {
+  var currentBuffer = this.buffered();
+  if ( currentBuffer.end() < seconds ) {
+    console.log( "Moving to: ", currentBuffer.end() - 5 )
+    return this.el_.vjs_setProperty('currentTime', currentBuffer.end() - 5 ); // Minus 1 to avoid running into the end of the buffer
+  } else {
+    return this.el_.vjs_setProperty('currentTime', seconds);
+  }
+};
+
 vjs.Flash.prototype.supportsFullScreen = function(){
   return false; // Flash does not allow fullscreen through javascript
 };
@@ -263,8 +273,8 @@ vjs.Flash.prototype.enterFullScreen = function(){
 
 // Create setters and getters for attributes
 var api = vjs.Flash.prototype,
-    readWrite = 'preload,currentTime,defaultPlaybackRate,playbackRate,autoplay,loop,mediaGroup,controller,controls,volume,muted,defaultMuted'.split(','),
-    readOnly = 'error,currentSrc,networkState,readyState,seeking,initialTime,duration,startOffsetTime,paused,played,seekable,ended,videoTracks,audioTracks,videoWidth,videoHeight,textTracks'.split(',');
+    readWrite = 'preload,defaultPlaybackRate,playbackRate,autoplay,loop,mediaGroup,controller,controls,volume,muted,defaultMuted'.split(','),
+    readOnly = 'error,currentSrc,currentTime,networkState,readyState,seeking,initialTime,duration,startOffsetTime,paused,played,seekable,ended,videoTracks,audioTracks,videoWidth,videoHeight,textTracks'.split(',');
     // Overridden: buffered
 
 /**

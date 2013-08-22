@@ -20,16 +20,55 @@ vjs.VolumeControl = vjs.Component.extend({
         this.removeClass('vjs-hidden');
       }
     }));
+    
+    if ( this.options_.hideMute ) {
+      this.muteToggle.hide();
+    }
+    
+    if ( this.options_.menu ) {
+      this.volumeSlider.hide();
+      this.muteToggle.hide();
+    } else {
+      this.volumeMenuButton.hide();
+    }
+    // backwards compatibility
+    this.volumeBar = this.volumeSlider.volumeBar;
+    console.log( player );
+    player.controlBar.muteToggle = this.muteToggle;
   }
 });
 
 vjs.VolumeControl.prototype.options_ = {
   children: {
+    'volumeSlider': {},
+    'muteToggle': {},
+    'volumeMenuButton': {vertical: true}
+  },
+  menu: false,
+  mute: true
+};
+
+vjs.VolumeControl.prototype.createEl = function(){
+  return vjs.Component.prototype.createEl.call(this, 'div', {
+    className: 'vjs-volume-container'+(!this.options_.menu?' vjs-volume-container-linear':'')+' vjs-control'
+  });
+};
+
+vjs.VolumeSlider = vjs.Component.extend({
+  /** @constructor */
+  init: function(player, options){
+    vjs.Component.call(this, player, options);
+  }
+});
+
+vjs.VolumeSlider.prototype.options_ = {
+  children: {
     'volumeBar': {}
   }
 };
 
-vjs.VolumeControl.prototype.createEl = function(){
+
+vjs.VolumeSlider.prototype.createEl = function(){
   return vjs.Component.prototype.createEl.call(this, 'div', {
     className: 'vjs-volume-control vjs-control'
   });
