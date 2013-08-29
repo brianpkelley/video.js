@@ -990,6 +990,8 @@ vjs.Player.prototype.listenForUserActivity = function(){
   // Any mouse movement will be considered user activity
   this.on('mousedown', onMouseDown);
   this.on('mousemove', onMouseActivity);
+  this.on('mouseover', onMouseActivity);
+  this.on('mouseout', vjs.bind(this, function() { this.userActive(false); }));
   this.on('mouseup', onMouseUp);
 
   // Listen for keyboard navigation
