@@ -100,45 +100,47 @@ vjs.Slider.prototype.update = function(){
     var box = this.el_;
     var boxWidth = box.offsetWidth;
     var boxHeight = box.offsetHeight;
-        
+
     var handleWidth = handle.el().offsetWidth;
     var handleHeight = handle.el().offsetHeight;
-        
-    
-           
+    var handlePercent;
+    var boxAdjustedPercent;
+    var adjustedProgress;
+
+
 
     // Get the adjusted size of the box, considering that the handle's center never touches the left / right or top / bottom.
-   
-    
-    
+
+
+
     if ( this.options_.vertical ) {
       // The width of the handle in percent of the containing box
       // In IE, heights may not be ready yet causing NaN
-      var handlePercent = (handleHeight) ? handleHeight / boxHeight : 0;
-      
+      handlePercent = (handleHeight) ? handleHeight / boxHeight : 0;
+
       // There is a margin of half the handle's height on both top and bottom.
-      var boxAdjustedPercent = 1 + handlePercent;
+      boxAdjustedPercent = 1 + handlePercent;
       // Adjust the progress that we'll use to set heights to the new adjusted box height
-      var adjustedProgress = progress * boxAdjustedPercent;
+      adjustedProgress = progress * boxAdjustedPercent;
       // The bar does reach the top, so we need to account for this in the bar's height
-      var barProgress = adjustedProgress - (handlePercent / 2);
-      
+      barProgress = adjustedProgress - (handlePercent / 2);
+
       // Move the handle from the top based on the adjected progress
       handle.el().style.top = 100 - vjs.round(adjustedProgress * 100, 2) + '%';
-      
+
     } else {
-      
+
       // The width of the handle in percent of the containing box
       // In IE, widths may not be ready yet causing NaN
-      var handlePercent = (handleWidth) ? handleWidth / boxWidth : 0;
-      
+      handlePercent = (handleWidth) ? handleWidth / boxWidth : 0;
+
       // There is a margin of half the handle's width on both sides.
-      var boxAdjustedPercent = 1 - handlePercent;
+      boxAdjustedPercent = 1 - handlePercent;
       // Adjust the progress that we'll use to set widths to the new adjusted box width
-      var adjustedProgress = progress * boxAdjustedPercent;
+      adjustedProgress = progress * boxAdjustedPercent;
       // The bar does reach the left side, so we need to account for this in the bar's width
-      var barProgress = adjustedProgress + (handlePercent / 2);
-      
+      barProgress = adjustedProgress + (handlePercent / 2);
+
       // Move the handle from the left based on the adjected progress
       handle.el().style.left = vjs.round(adjustedProgress * 100, 2) + '%';
     }
@@ -160,7 +162,7 @@ vjs.Slider.prototype.calculateDistance = function(event){
   boxW = el.offsetWidth;
   boxH = el.offsetHeight;
   handle = this.handle;
-  
+
   if (this.options_.vertical) {
     boxY = box.top;
 
