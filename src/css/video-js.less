@@ -73,15 +73,18 @@ e.g. <video class="video-js my-skin-name">
 The control icons are from a custom font. Each icon corresponds to a character
 (e.g. "\e001"). Font icons allow for easy scaling and coloring of icons.
 */
-@font-face{
+@font-face {
   font-family: 'VideoJS';
   src: url('font/vjs.eot');
-  src: url('font/vjs.eot?#iefix') format('embedded-opentype'),
-  url('font/vjs.woff') format('woff'),
-  url('font/vjs.ttf') format('truetype');
+  src: url('font/vjs.eot?') format('embedded-opentype'),
+}
 
-  font-weight: normal;
-  font-style: normal;
+@font-face {
+    font-family: 'VideoJS';
+    src: url(data:application/x-font-woff;charset=utf-8;base64,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) format('woff'),
+         url('fonts/vjs.ttf') format('truetype');
+	font-weight: normal;
+    font-style: normal;
 }
 
 // Icon font character values
@@ -249,11 +252,22 @@ The default control bar that is a container for most of the controls.
 
 /* Volume/Mute
 -------------------------------------------------------------------------------- */
+.video-js .vjs-volume-container {
+  float: right;
+}
+.video-js .vjs-volume-container-linear {
+  width: 9em;
+  padding-right: 1em;
+}
+
 .vjs-default-skin .vjs-mute-control,
 .vjs-default-skin .vjs-volume-menu-button {
   cursor: pointer;
   float: right;
 }
+
+
+
 .vjs-default-skin .vjs-mute-control:before,
 .vjs-default-skin .vjs-volume-menu-button:before {
   content: @volume-high-icon;
@@ -309,10 +323,36 @@ The default control bar that is a container for most of the controls.
   height: 1em;
 }
 
-.vjs-default-skin .vjs-volume-menu-button .vjs-menu .vjs-menu-content {
+.vjs-default-skin  .vjs-volume-menu-button .vjs-menu .vjs-menu-content {
   width: 6em;
   left: -4em;
 }
+
+.vjs-default-skin  .vjs-volume-menu-vertical .vjs-menu-content {
+  left: -2em !important;
+  width: 4em !important;
+  height: 8em;
+  padding-top: .5em;
+}
+
+.vjs-default-skin  .vjs-volume-menu-vertical .vjs-volume-bar {
+  width: 0.6em;
+  height: 5em;
+  margin: 1.1em auto 0;
+}
+
+
+.vjs-default-skin  .vjs-volume-menu-vertical .vjs-volume-level {
+  height: 8em;
+  width: 100%;
+  //left: 0;
+  bottom: 0;
+  top: auto;
+  background: @slider-bar-color
+    url(@slider-bar-pattern)
+    -50% 0 repeat;
+}
+
 
 /* Progress
 --------------------------------------------------------------------------------

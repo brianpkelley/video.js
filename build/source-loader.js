@@ -46,13 +46,13 @@ var sourceFiles = [
 ];
 
 // Allow overriding the default project root
-var projectRoot = projectRoot || '../';
+var projectRoot = projectRoot+'video-js/' || '../';
 
 function loadScripts(scriptsArr){
   for (var i = 0; i < scriptsArr.length; i++) {
     // Using document.write because that's the easiest way to avoid triggering
     // asynchrnous script loading
-    document.write( "<script src='" + projectRoot + scriptsArr[i] + "'><\/script>" );
+    document.write( "<script src='" + projectRoot + scriptsArr[i] + "'><\/script>\n" );
   }
 }
 
