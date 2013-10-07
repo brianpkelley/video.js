@@ -208,6 +208,20 @@ vjs.Flash = vjs.MediaTechController.extend({
     } else {
       vjs.Flash.embed(options['swf'], placeHolder, flashVars, params, attributes);
     }
+    this.hideTimer = null;
+    player.on('mouseover', player.reportUserActivity);
+    player.on('mouseout', vjs.bind(player, function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        if ( this.hideTimer ) {
+          clearTimeout( this.hideTimer)
+        }
+        
+        this.hideTimer = setTimeout( function() { player.userActive(false); }, 500)
+        
+      })
+    );
   }
 });
 
