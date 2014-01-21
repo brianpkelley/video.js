@@ -83,7 +83,7 @@ vjs.VolumeBar = vjs.Slider.extend({
     vjs.Slider.call(this, player, options);
     player.on('volumechange', vjs.bind(this, this.updateARIAAttributes));
     player.ready(vjs.bind(this, this.updateARIAAttributes));
-    setTimeout(vjs.bind(this, this.update), 0); // update when elements is in DOM
+    setTimeout(vjs.bind(this, this.update), 200); // update when elements is in DOM
   }
 });
 
@@ -160,7 +160,7 @@ vjs.VolumeLevel.prototype.createEl = function(){
  vjs.VolumeHandle = vjs.SliderHandle.extend();
 
  /** @inheritDoc */
- vjs.VolumeHandle.prototype.defaultValue = '00:00';
+ vjs.VolumeHandle.prototype.defaultValue = '1';
 
  /** @inheritDoc */
  vjs.VolumeHandle.prototype.createEl = function(){
