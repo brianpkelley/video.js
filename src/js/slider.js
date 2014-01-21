@@ -1,7 +1,8 @@
 /* Slider
 ================================================================================ */
 /**
- * Parent for seek bar and volume slider
+ * The base functionality for sliders like the volume bar and seek bar
+ *
  * @param {vjs.Player|Object} player
  * @param {Object=} options
  * @constructor
@@ -243,7 +244,9 @@ vjs.SliderHandle = vjs.Component.extend();
 
 /**
  * Default value of the slider
+ *
  * @type {Number}
+ * @private
  */
 vjs.SliderHandle.prototype.defaultValue = 0;
 

@@ -1,5 +1,6 @@
 /**
- * Control the volume
+ * The component for controlling the volume level
+ *
  * @param {vjs.Player|Object} player
  * @param {Object=} options
  * @constructor
@@ -64,15 +65,15 @@ vjs.VolumeSlider.prototype.options_ = {
   }
 };
 
-
-vjs.VolumeSlider.prototype.createEl = function(){
+vjs.VolumeControl.prototype.createEl = function(){
   return vjs.Component.prototype.createEl.call(this, 'div', {
     className: 'vjs-volume-control vjs-control'
   });
 };
 
 /**
- * Contains volume level
+ * The bar that contains the volume level and can be clicked on to adjust the level
+ *
  * @param {vjs.Player|Object} player
  * @param {Object=} options
  * @constructor
@@ -112,6 +113,10 @@ vjs.VolumeBar.prototype.createEl = function(){
 };
 
 vjs.VolumeBar.prototype.onMouseMove = function(event) {
+  if (this.player_.muted()) {
+    this.player_.muted(false);
+  }
+
   this.player_.volume(this.calculateDistance(event));
 };
 
@@ -133,6 +138,7 @@ vjs.VolumeBar.prototype.stepBack = function(){
 
 /**
  * Shows volume level
+ *
  * @param {vjs.Player|Object} player
  * @param {Object=} options
  * @constructor
@@ -152,7 +158,8 @@ vjs.VolumeLevel.prototype.createEl = function(){
 };
 
 /**
- * Change volume level
+ * The volume handle can be dragged to adjust the volume level
+ *
  * @param {vjs.Player|Object} player
  * @param {Object=} options
  * @constructor

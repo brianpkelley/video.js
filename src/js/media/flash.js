@@ -5,8 +5,9 @@
  */
 
 /**
- * HTML5 Media Controller - Wrapper for HTML5 Media API
- * @param {vjs.Player|Object} player
+ * Flash Media Controller - Wrapper for fallback SWF API
+ *
+ * @param {vjs.Player} player
  * @param {Object=} options
  * @param {Function=} ready
  * @constructor
@@ -322,6 +323,7 @@ var api = vjs.Flash.prototype,
 
 /**
  * @this {*}
+ * @private
  */
 var createSetter = function(attr){
   var attrUpper = attr.charAt(0).toUpperCase() + attr.slice(1);
@@ -330,6 +332,7 @@ var createSetter = function(attr){
 
 /**
  * @this {*}
+ * @private
  */
 var createGetter = function(attr){
   api[attr] = function(){ return this.el_.vjs_getProperty(attr); };
@@ -357,7 +360,16 @@ vjs.Flash.isSupported = function(){
 };
 
 vjs.Flash.canPlaySource = function(srcObj){
-  if (srcObj.type in vjs.Flash.formats || srcObj.type in vjs.Flash.streamingFormats) { return 'maybe'; }
+  var type;
+
+  if (!srcObj.type) {
+    return '';
+  }
+
+  type = srcObj.type.replace(/;.*/,'').toLowerCase();
+  if (type in vjs.Flash.formats || type in vjs.Flash.streamingFormats) {
+    return 'maybe';
+  }
 };
 
 vjs.Flash.formats = {
