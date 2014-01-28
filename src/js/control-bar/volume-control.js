@@ -65,7 +65,7 @@ vjs.VolumeSlider.prototype.options_ = {
   }
 };
 
-vjs.VolumeControl.prototype.createEl = function(){
+vjs.VolumeSlider.prototype.createEl = function(){
   return vjs.Component.prototype.createEl.call(this, 'div', {
     className: 'vjs-volume-control vjs-control'
   });
